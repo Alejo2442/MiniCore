@@ -1,0 +1,189 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Arial, sans-serif;
+    background: #f1f3f6;
+    color: #1f2933;
+}
+
+.contenedor {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: #1e3a5f;
+    color: #ffffff;
+    padding: 28px 0;
+    margin-bottom: 28px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+header p {
+    margin: 6px 0 0;
+    color: #c9d6e6;
+    font-size: 15px;
+}
+
+.tarjeta {
+    background: #ffffff;
+    border: 1px solid #dde2e8;
+    border-radius: 8px;
+    padding: 22px 24px;
+    margin-bottom: 24px;
+}
+
+.tarjeta h2 {
+    margin: 0 0 16px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #1e3a5f;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo label {
+    font-size: 13px;
+    color: #52606d;
+}
+
+input[type="date"] {
+    padding: 9px 10px;
+    font-size: 14px;
+    border: 1px solid #c4ccd6;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+input[type="date"]:focus {
+    outline: none;
+    border-color: #1e3a5f;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 600;
+    color: #ffffff;
+    background: #1e3a5f;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2b4f7e;
+}
+
+.columnas {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+.columnas .tarjeta {
+    margin-bottom: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+th {
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #52606d;
+    background: #f5f7fa;
+    padding: 10px 12px;
+    border-bottom: 1px solid #dde2e8;
+}
+
+td {
+    padding: 11px 12px;
+    border-bottom: 1px solid #eef1f4;
+}
+
+tbody tr:hover {
+    background: #f9fafb;
+}
+
+tfoot td {
+    font-weight: 600;
+    border-top: 2px solid #dde2e8;
+    border-bottom: none;
+}
+
+.numero {
+    text-align: right;
+}
+
+.comision {
+    font-weight: 600;
+    color: #1e3a5f;
+}
+
+.vacio {
+    margin: 0;
+    padding: 30px 0;
+    text-align: center;
+    color: #7b8794;
+}
+
+.nota {
+    margin: 14px 0 0;
+    font-size: 13px;
+    color: #7b8794;
+}
+
+.error {
+    margin: 14px 0 0;
+    padding: 10px 12px;
+    background: #fdecec;
+    color: #a61b1b;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+@media (max-width: 800px) {
+    .columnas {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta {
+        padding: 18px 16px;
+    }
+
+    th, td {
+        padding: 9px 6px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+}

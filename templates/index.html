@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comisiones de Vendedores</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="contenedor">
+            <h1>Comisiones de Vendedores</h1>
+        </div>
+    </header>
+
+    <main class="contenedor">
+        <section class="tarjeta">
+            <h2>Periodo de consulta</h2>
+            <form method="get" class="filtros">
+                <div class="campo">
+                    <label for="inicio">Fecha de inicio</label>
+                    <input type="date" id="inicio" name="inicio" value="{{ inicio }}" required>
+                </div>
+                <div class="campo">
+                    <label for="fin">Fecha de fin</label>
+                    <input type="date" id="fin" name="fin" value="{{ fin }}" required>
+                </div>
+                <button type="submit">Calcular comisiones</button>
+            </form>
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
+        </section>
+
+        <div class="columnas">
+            <section class="tarjeta">
+                <h2>Resultados</h2>
+                {% if resultados %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Vendedor</th>
+                            <th class="numero">Total vendido</th>
+                            <th class="numero">Porcentaje</th>
+                            <th class="numero">Comisión</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in resultados %}
+                        <tr>
+                            <td>{{ r.vendedor }}</td>
+                            <td class="numero">${{ "{:,.2f}".format(r.total) }}</td>
+                            <td class="numero">{{ r.porcentaje }}%</td>
+                            <td class="numero comision">${{ "{:,.2f}".format(r.comision) }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>Total</td>
+                            <td class="numero">${{ "{:,.2f}".format(resultados | sum(attribute="total")) }}</td>
+                            <td></td>
+                            <td class="numero">${{ "{:,.2f}".format(resultados | sum(attribute="comision")) }}</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                {% else %}
+                <p class="vacio">Selecciona un rango de fechas y presiona "Calcular comisiones" para ver los resultados.</p>
+                {% endif %}
+            </section>
+
+            <section class="tarjeta">
+                <h2>Reglas de comisión</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ventas desde</th>
+                            <th class="numero">Comisión</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for monto_minimo, porcentaje in reglas %}
+                        <tr>
+                            <td>${{ "{:,.2f}".format(monto_minimo) }}</td>
+                            <td class="numero">{{ porcentaje }}%</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </main>
+</body>
+</html>
